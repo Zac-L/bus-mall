@@ -12,31 +12,31 @@ function Product (displayName, filePath, id) {
 
 //Constructor and instances
 function instProducts() {
-    var bag = new Product( 'bag', 'images/bag.jpg', 'bag' );
-    var banana = new Product( 'banana', 'images/banana.jpg', 'banana' );
-    var bathroom = new Product( 'bathroom', 'images/bathroom.jpg', 'bathroom' );
-    var boots = new Product( 'boots', 'images/boots.jpg', 'boots' );
-    var bubbleGum = new Product( 'bubbleGum', 'images/bubblegum.jpg', 'bubblegum' );
-    var chair = new Product( 'chair', 'images/chair.jpg', 'chair' );
-    var cthulhu = new Product( 'cthulhu', 'images/cthulhu.jpg', 'cthulhu' );
-    var dogDuck = new Product( 'dogDuck', 'images/dog-duck.jpg', 'dogDuck' );
-    var dragon = new Product( 'dragon', 'images/dragon.jpg', 'dragon' );
-    var pen = new Product( 'pen', 'images/pen.jpg', 'pen' );
-    var petSweep = new Product( 'petSweep', 'images/pet-sweep.jpg', 'petSweep' );
-    var scissors = new Product( 'scissors', 'images/scissors.jpg', 'scissors' );
-    var shark = new Product( 'shark', 'images/shark.jpg', 'shark' );
-    var sweep = new Product( 'sweep', 'images/sweep.png', 'sweep' );
-    var tauntaun = new Product( 'tauntaun', 'images/tauntaun.jpg', 'tauntaun' );
-    var unicorn = new Product( 'unicorn', 'images/unicorn.jpg', 'unicorn' );
-    var usb = new Product( 'usb', 'images/usb.gif', 'usb' );
-    var waterCan = new Product( 'watercan', 'images/water-can.jpg', 'watercan' );
-    var wineGlass = new Product( 'wineglass', 'images/wine-glass.jpg', 'wineglass' );
+    var bag = new Product( 'bag', 'images/bag.jpg', 'bag');
+    var banana = new Product( 'banana', 'images/banana.jpg', 'banana');
+    var bathroom = new Product('bathroom', 'images/bathroom.jpg', 'bathroom');
+    var boots = new Product('boots', 'images/boots.jpg', 'boots');
+    var bubbleGum = new Product('bubbleGum', 'images/bubblegum.jpg', 'bubblegum');
+    var chair = new Product('chair', 'images/chair.jpg', 'chair');
+    var cthulhu = new Product('cthulhu', 'images/cthulhu.jpg', 'cthulhu');
+    var dogDuck = new Product('dogDuck', 'images/dog-duck.jpg', 'dogDuck');
+    var dragon = new Product('dragon', 'images/dragon.jpg', 'dragon');
+    var pen = new Product('pen', 'images/pen.jpg', 'pen');
+    var petSweep = new Product('petSweep', 'images/pet-sweep.jpg', 'petSweep');
+    var scissors = new Product('scissors', 'images/scissors.jpg', 'scissors');
+    var shark = new Product( 'shark', 'images/shark.jpg', 'shark');
+    var sweep = new Product('sweep', 'images/sweep.png', 'sweep');
+    var tauntaun = new Product('tauntaun', 'images/tauntaun.jpg', 'tauntaun');
+    var unicorn = new Product('unicorn', 'images/unicorn.jpg', 'unicorn');
+    var usb = new Product('usb', 'images/usb.gif', 'usb');
+    var waterCan = new Product('watercan', 'images/water-can.jpg', 'watercan');
+    var wineGlass = new Product('wineglass', 'images/wine-glass.jpg', 'wineglass');
 }
 
 var tracker = {
     choice1: document.getElementById( 'choice1' ),
-    choice2: document.getElementById( 'choice2' ),
-    choice3: document.getElementById( 'choice3' ),
+    choice2: document.getElementById( 'choice2'),
+    choice3: document.getElementById( 'choice3'),
     displaySection: document.getElementById( 'display' ),
     votes: 0,
 
@@ -46,7 +46,6 @@ var tracker = {
 
     getIndexes: function ( arr ) {
         var selectIndexes = [];
-        console.log(selectIndexes);
         
         
         do {
@@ -89,11 +88,13 @@ var tracker = {
     voteCounter: function ( target ) {
         this.votes += 1;
 
-        var selectItems = allProducts[ target.getAttribute( 'data-index' ) ];
+        var selectItems = allProducts[ target.getAttribute( 'data-index') ];
         selectItems.votes ++;
+        
 
         if ( this.votes > 25 ) {
             this.viewResults();
+            
         }
     },
 
@@ -101,6 +102,23 @@ var tracker = {
 
         this.displaySection.removeEventListener ( 'click', voteHandler );
         console.table( allProducts );
+
+        var canvas =  document.getElementById( 'mallChart' ).getContext( '2d' );
+        var voteChart = new Chart ( canvas, {
+            type: 'bar',
+            data: {
+                labels: allProducts.map(function ( product ) {
+                    return product.displayName;
+                }),
+                datasets: [{
+                    label: 'Number of votes', 
+                    data: allProducts.map(function ( product) {
+                        return product.votes;
+                    }) 
+                }]            
+            },
+    
+        })
     }
     
 };
@@ -108,11 +126,12 @@ var tracker = {
 var display = document.getElementById( 'display' );
 display.addEventListener( 'click', voteHandler, true );
 
-function voteHandler ( event ) {
+function voteHandler (event) {
     tracker.voteCounter( event.target );
     tracker.displayOptions();
 }
   
+
 
 
 instProducts();
