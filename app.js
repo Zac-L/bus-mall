@@ -46,7 +46,9 @@ var tracker = {
 
     getIndexes: function ( arr ) {
         var selectIndexes = [];
-
+        console.log(selectIndexes);
+        
+        
         do {
             var indexNum = this.randomIndex( arr );
 
@@ -55,7 +57,9 @@ var tracker = {
             }
 
         } while ( selectIndexes.length < 3 );
+    
         return selectIndexes;
+       
     },
 
     displayOptions: function () {
