@@ -1,11 +1,10 @@
-var allProducts = []
+var allProducts = [];
 
-function Product (displayName, filePath, id) {
+function Product (displayName, filePath, id, votes) {
     this.displayName = displayName,
     this.filePath = filePath,
-    this.votes = 0,
+    this.votes = votes || 0;
     this.id = id,
-    
     allProducts.push( this );
 }
 
@@ -45,8 +44,7 @@ var tracker = {
 
     getIndexes: function ( arr ) {
         var selectIndexes = [];
-        
-        
+
         do {
             var indexNum = this.randomIndex( arr );
 
@@ -55,16 +53,14 @@ var tracker = {
             }
 
         } while ( selectIndexes.length < 3 );
-    
         return selectIndexes;
-       
     },
 
     displayOptions: function () {
         var randomProductsIndex = this.getIndexes( allProducts );
 
         var index1 = randomProductsIndex[0];
-        var index2 = randomProductsIndex[1]; 
+        var index2 = randomProductsIndex[1];
         var index3 = randomProductsIndex[2];
 
         var product1 = allProducts[index1];
@@ -75,7 +71,7 @@ var tracker = {
         this.choice2.src = product2.filePath;
         this.choice3.src = product3.filePath;
 
-        this.choice1.id = product1.id; 
+        this.choice1.id = product1.id;
         this.choice2.id = product2.id;
         this.choice3.id = product3.id;
 
@@ -88,19 +84,17 @@ var tracker = {
         this.votes += 1;
 
         var selectItems = allProducts[ target.getAttribute( 'data-index') ];
-        selectItems.votes ++;
-        
+        selectItems.votes ++ ;
 
         if ( this.votes > 25 ) {
             this.viewResults();
-            
+            saveToLocal('votes', allProducts);
         }
     },
 
     viewResults: function () {
 
         this.displaySection.removeEventListener ( 'click', voteHandler );
-        console.table( allProducts );
 
         var canvas =  document.getElementById( 'mallChart' ).getContext( '2d' );
         var voteChart = new Chart ( canvas, {
@@ -113,13 +107,11 @@ var tracker = {
                     label: 'Number of votes', 
                     data: allProducts.map(function ( product) {
                         return product.votes;
-                    }) 
-                }]            
+                    })
+                }]
             },
-    
-        })
+        });
     }
-    
 };
 
 var display = document.getElementById( 'display' );
@@ -129,9 +121,30 @@ function voteHandler (event) {
     tracker.voteCounter( event.target );
     tracker.displayOptions();
 }
-  
 
+// tracker.displayOptions();
 
+function saveToLocal(key, value ) {
+    var localSavedData = JSON.stringify(value);
+    localStorage.setItem('votes', localSavedData);
+}
 
-instProducts();
-tracker.displayOptions();
+function getFromLocal( key ) {
+    return JSON.parse(localStorage.getItem( key ) );
+}
+
+var storedVoteData = getFromLocal( 'votes' );
+
+if ( storedVoteData ) {
+    console.log(storedVoteData);
+    for ( var i = 0; i < storedVoteData.length; i ++ ) {
+
+        var voteData = storedVoteData[i];
+        var product = new Product(voteData.displayName, voteData.filePath, voteData.id, voteData.votes );
+    }
+    tracker.displayOptions();
+} else {
+    instProducts();
+    tracker.displayOptions();
+}
+console.log(allProducts);
