@@ -1,0 +1,15 @@
+img {
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+    
+}
+
+h1 {
+    font-size: 34px;
+    margin: 0 auto;
+    width: 70%;
+    display: block;
+    text-align: center;
+}
