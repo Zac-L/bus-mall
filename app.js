@@ -3,7 +3,6 @@ var allProducts = []
 function Product (displayName, filePath, id) {
     this.displayName = displayName,
     this.filePath = filePath,
-    // this.displayCount = 0,
     this.votes = 0,
     this.id = id,
     
