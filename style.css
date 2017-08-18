@@ -1,15 +1,47 @@
+body {
+    background-color: grey;
+}
+
+/* header {
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    background-color: white;
+
+} */
+
 img {
+    margin: 1.5em;
     height: 150px;
     width: 150px;
-    margin: 0 auto;
-    display: block;
-    
+    border: 5px solid black;
+}
+
+#display {
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
+    padding: 30px;
     font-size: 34px;
     margin: 0 auto;
     width: 70%;
     display: block;
     text-align: center;
+}
+
+.grow:hover {
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+canvas {
+    display: flex;
+    justify-content: center;
+    width: 800px !important;
+    height: 600px !important;
 }
