@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <title>Bus Mall!!</title>
         <link href="style.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="../sam-skeleton/css/normalize.css">
     </head>
     <body>
+        <header>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </nav>
+        </header>
         <main>
             <section>
                 <h1> Select your Favorite </h1>
                     <div id="display">
-                    <img id="choice1">
-                    <img id="choice2">
-                    <img id="choice3">
+                    <img id="choice1" class="grow">
+                    <img id="choice2" class="grow">
+                    <img id="choice3" class="grow">
                     </div>
             </section>
-            <canvas id="mallChart" height="100" width="100">
+            <canvas id="mallChart">
       <p>You don't support canvas.</p>
     </canvas>
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
-        <!-- <script src="dontsave.js"></script> -->
         <script src="app.js"></script>
     </body>
 </html>

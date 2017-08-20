@@ -103,6 +103,10 @@ var tracker = {
                 labels: allProducts.map(function ( product ) {
                     return product.displayName;
                 }),
+                // options: {
+                //     responsive: true,
+                //     maintainAspectRatio: false,
+                // },
                 datasets: [{
                     label: 'Number of votes', 
                     data: allProducts.map(function ( product) {
@@ -121,8 +125,6 @@ function voteHandler (event) {
     tracker.voteCounter( event.target );
     tracker.displayOptions();
 }
-
-// tracker.displayOptions();
 
 function saveToLocal(key, value ) {
     var localSavedData = JSON.stringify(value);
