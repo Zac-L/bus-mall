@@ -111,7 +111,8 @@ var tracker = {
                     label: 'Number of votes', 
                     data: allProducts.map(function ( product) {
                         return product.votes;
-                    })
+                    }),
+                    backgroundColor: ['#0CB8AC', '#B4A5E8', '#FDD540', '#E39191', '#5658A3', '#0CB8AC', '#B4A5E8', '#FDD540', '#E39191', '#5658A3', '#0CB8AC', '#B4A5E8', '#FDD540', '#E39191', '#5658A3', '#0CB8AC', '#FDD540', '#E39191', '#5658A3', '#0CB8AC']
                 }]
             },
         });
