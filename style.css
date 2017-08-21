@@ -36,6 +36,7 @@ canvas {
     justify-content: center;
     width: 800px !important;
     height: 600px !important;
+    margin: 6em !important;
 }
 
  ul {
