@@ -2,7 +2,7 @@ body {
     background-color: grey;
 }
 
-/* header {
+ header {
     height: fit-content;
     display: flex;
     flex-direction: row;
@@ -10,7 +10,7 @@ body {
 
     background-color: white;
 
-} */
+} 
 
 img {
     margin: 1.5em;
